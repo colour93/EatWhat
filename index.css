@@ -1,0 +1,30 @@
+body {
+    text-align: center;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.box {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    width: 50px;
+}
+
+.btn-2, #retry {
+    display: none;
+}
+
+#retry {
+    width: auto;
+}
