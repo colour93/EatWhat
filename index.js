@@ -14,6 +14,7 @@ var stopBtn;
 var type;
 var infoBox;
 var inst;
+var tempAry;
 
 // 窗口初始化
 window.onload = () => {
@@ -39,36 +40,28 @@ window.onload = () => {
 
 };
 
-// 吃啥
-const eatWhat = () => {
+// 随机
+const start = (what) => {
+    switch (what) {
+        case 'food':
+            tempAry = food;
+            infoBox.innerHTML = "我看你啥都别吃了。";
+            break;
+        case 'drink':
+            tempAry = drink;
+            infoBox.innerHTML = "我看你啥都别喝了。";
+            break;
+    };
     if (count>=3) {
         inst.open();
         return;
     };
     count++;
     interval = setInterval(()=>{
-        num = randomNum(0, food.length-1);
-        str.innerHTML = food[num]
+        num = randomNum(0, tempAry.length-1);
+        str.innerHTML = tempAry[num]
     }, 50);
-    type = "food";
-    btnBox2.style.display = "flex";
-    btnBox1.style.display = "none";
-    retryBtn.style.display = "none";
-    stopBtn.style.display = "flex";
-};
-
-// 喝啥
-const drinkWhat = () => {
-    if (count>=3) {
-        inst.open();
-        return;
-    };
-    count++;
-    interval = setInterval(()=>{
-        num = randomNum(0, drink.length-1);
-        str.innerHTML = drink[num]
-    }, 50);
-    type = "drink";
+    type = what;
     btnBox2.style.display = "flex";
     btnBox1.style.display = "none";
     retryBtn.style.display = "none";
@@ -84,17 +77,7 @@ const stop = () => {
 
 // 再来（贪得无厌
 const retry = () => {
-    switch (type) {
-        case 'food':
-            infoBox.innerHTML = "我看你啥都别吃了。";
-            eatWhat();
-            break;
-    
-        case 'drink':
-            infoBox.innerHTML = "我看你啥都别喝了。";
-            drinkWhat();
-            break;
-    }
+    start(type);
 };
 
 // 随机数
