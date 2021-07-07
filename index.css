@@ -28,3 +28,23 @@ button {
 #retry {
     width: auto;
 }
+
+.footer-box {
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    font-size: 14px;
+    text-align: center;
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-delay: 0s;
+}
+
+a, span {
+    text-decoration: none;
+    color: rgba(0,0,0,0.6);
+    cursor: pointer;
+    transition: .25s;
+}
