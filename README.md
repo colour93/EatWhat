@@ -77,12 +77,14 @@ POST /manage/school/add (鉴权)
     "code": 100,
     "msg": "success",
     "data": {
-  		schoolId: 1,
-  		schoolName: '测试',
-  		keywords: [ '1', '2', '3' ],
-  		_id: new ObjectId("618f24e05fc1fb22aa161b99"),
-  		__v: 0
-	}
+        "schoolId": 3,
+        "schoolName": "2312312",
+        "keywords": [
+            "河3333大"
+        ],
+        "_id": "6194a054f1a1312a4e4509f4",
+        "__v": 0
+    }
 }
 ```
 
