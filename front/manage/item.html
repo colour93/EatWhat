@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品 - 管理面板 - 吃点什么</title>
+
+    <!-- 基于主题 -->
+
+    <!-- CSS引用 -->
+
+    <!-- 前置 -->
+    <link href="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/icomoon/style.css" rel="stylesheet">
+    <link href="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/uniform/css/default.css" rel="stylesheet"/>
+    <link href="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/switchery/switchery.min.css" rel="stylesheet"/>
+    <link href="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/nvd3/nv.d3.min.css" rel="stylesheet"> 
+    <!-- 主题 -->
+    <link href="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/css/ecaps.min.css" rel="stylesheet">
+    <link href="/css/custom.css" rel="stylesheet">
+</head>
+<body>
+
+     <!-- 侧栏 -->
+     <div class="page-sidebar">
+        <a class="logo-box" href="index.html">
+            <span>吃点什么</span>
+            <i class="icon-radio_button_unchecked" id="fixed-sidebar-toggle-button"></i>
+            <i class="icon-close" id="sidebar-toggle-button-close"></i>
+        </a>
+        <div class="page-sidebar-inner">
+            <div class="page-sidebar-menu">
+                <ul class="accordion-menu">
+                    <li>
+                        <a href="index.html">
+                            <i class="menu-icon icon-home4"></i><span>仪表板</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/manage/school.html">
+                            <i class="menu-icon icon-format_list_bulleted"></i><span>学校管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/manage/shop.html">
+                            <i class="menu-icon icon-format_list_bulleted"></i><span>店铺管理</span>
+                        </a>
+                    </li>
+                    <li class="active-page">
+                        <a href="/manage/item.html">
+                            <i class="menu-icon icon-format_list_bulleted"></i><span>商品管理</span>
+                        </a>
+                    </li>
+                    <li class="menu-divider"></li>
+                    <li>
+                        <a href="/">
+                            <i class="menu-icon icon-public"></i><span>主站</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/colour93/eatwhat">
+                            <i class="menu-icon icon-public"></i><span>GitHub</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主内容区 -->
+    <div class="page-content">
+
+        <!-- 页头 -->
+        <div class="page-header">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                
+                    <!-- 头像区域 -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><a href="javascript:void(0)" id="collapsed-sidebar-toggle-button"><i class="fa fa-bars"></i></a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown user-dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="http://via.placeholder.com/36x36" alt="" class="img-circle"></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="javascript:void(0);" id="logout-a">登出</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <!-- 页内容 -->
+        <div class="page-inner">
+            <!-- 页标题 -->
+            <div class="page-title">
+                <h3 class="breadcrumb-header" id="dash-title">商品管理</h3>
+            </div>
+            <!-- 页 -->
+            <div id="main-wrapper">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-white">
+                            <div class="panel-heading clearfix">
+                                <h4 class="panel-title">数据条目</h4>
+                            </div>
+                            <div class="panel-body">
+                                <button type="button" class="btn btn-primary m-b-sm" data-toggle="modal" data-target="#addNewModal">添加条目</button>
+                                <!-- 添加条目模态框 -->
+                                <form id="addNewForm" action="javascript:void(0);">
+                                    <div class="modal fade" id="addNewModal" tabindex="-1" role="dialog" aria-labelledby="addNewModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title" id="addNewModalLabel">添加店铺</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <input type="text" id="itemName-input" class="form-control" placeholder="商品名称" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="number" step="0.01" id="price-input" class="form-control" placeholder="价格" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="deliverySupport" id="itemType-1" class="itemType" value="food" required />
+                                                            <label class="form-check-label" for="itemType-1">食品</label>
+                                                            <input class="form-check-input" type="radio" name="deliverySupport" id="itemType-0" class="itemType" value="drink" required />
+                                                            <label class="form-check-label" for="itemType-0">饮品</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                                    <button type="submit" id="add-row" class="btn btn-primary" onclick="addNew()">添加</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <!-- 错误信息模态框 -->
+                                <div class="modal fade" id="alertModal" tabindex="-2" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="alertModalLabel">一些问题</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p id="alertMsg"></p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 是否确定模态框 -->
+                                <div class="modal fade" id="confirmModal" tabindex="-3" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="confirmModalLabel">注意</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p id="confitmMsg">确定要删除吗？</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                                <button type="button" class="btn btn-primary" id="confirm-delete-btn">确定</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 表格区域 -->
+                                <div class="table-responsive">
+                                    <table id="table" class="display table">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>名称</th>
+                                                <th>类目</th>
+                                                <th>店铺</th>
+                                                <th>学校</th>
+                                                <th>价格</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- js -->
+
+    <!-- 前置 -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script src="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/jquery/jquery-3.1.0.min.js"></script>
+    <script src="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/uniform/js/jquery.uniform.standalone.js"></script>
+    <script src="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/switchery/switchery.min.js"></script>
+    <script src="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/datatables/js/jquery.datatables.min.js"></script>
+    <script src="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <!-- 主题 -->
+    <script src="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/js/ecaps.min.js"></script>
+    <!-- 页面自定义 -->
+    <script src="/js/common.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/table.js"></script>
+</body>
+</html>

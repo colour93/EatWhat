@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 - 管理面板 - 吃点什么</title>
+
+    <!-- 基于主题 -->
+
+    <!-- CSS引用 -->
+
+    <!-- 前置 -->
+    <link href="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/icomoon/style.css" rel="stylesheet">
+    <link href="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/uniform/css/default.css" rel="stylesheet"/>
+    <link href="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/switchery/switchery.min.css" rel="stylesheet"/>
+    <link href="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/nvd3/nv.d3.min.css" rel="stylesheet"> 
+    <!-- 主题 -->
+    <link href="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/css/ecaps.min.css" rel="stylesheet">
+    
+    <!-- 就写两句,没必要css了,直接style -->
+    <style>
+        .login-page {
+            background: #d9d9d9;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 页内容 -->
+    <div class="page-container">
+        <!-- 页内 -->
+        <div class="page-inner login-page">
+
+            <!-- 错误信息模态框 -->
+            <div class="modal fade" id="alertModal" tabindex="-2" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="alertModalLabel">一些问题</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p id="alertMsg"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="main-wrapper" class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3 login-box">
+                        <h3>吃点什么</h4>
+                        <h4>管理面板</h4>
+                        <form>
+                            <div class="form-group">
+                                <label for="user-input">用户名</label>
+                                <input type="text" class="form-control" id="user-input" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd-input">密码</label>
+                                <input type="password" class="form-control" id="pwd-input" required />
+                            </div>
+                            <button type="button" class="btn btn-primary" onclick="login()">登录</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <p class="p">
+                图片源自 <a href="https://bing.com">Bing.com</a>
+                <br>
+                Made By <a href="https://fur93.icu">玖叁</a> <a href="https://github.com/colour93/eatwhat">GitHub</a>
+                <br>
+                ©YoooFur+ 工作室 2020-2021
+            </p>
+        </div>
+    </div>
+    
+
+    <!-- js -->
+
+    <!-- 前置 -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script src="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/jquery/jquery-3.1.0.min.js"></script>
+    <script src="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/uniform/js/jquery.uniform.standalone.js"></script>
+    <script src="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/switchery/switchery.min.js"></script>
+    <!-- 主题 -->
+    <script src="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/js/ecaps.min.js"></script>
+    <!-- 页面自定义 -->
+    <script src="/js/common.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/login.js"></script>
+</body>
+</html>

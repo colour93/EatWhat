@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理面板 - 吃点什么</title>
+
+    <!-- 基于主题 -->
+
+    <!-- CSS引用 -->
+
+    <!-- 前置 -->
+    <link href="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/icomoon/style.css" rel="stylesheet">
+    <link href="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/uniform/css/default.css" rel="stylesheet"/>
+    <link href="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/switchery/switchery.min.css" rel="stylesheet"/>
+    <link href="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/nvd3/nv.d3.min.css" rel="stylesheet"> 
+    <!-- 主题 -->
+    <link href="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/css/ecaps.min.css" rel="stylesheet">
+    <link href="/css/custom.css" rel="stylesheet">
+</head>
+<body>
+
+     <!-- 侧栏 -->
+     <div class="page-sidebar">
+        <a class="logo-box" href="index.html">
+            <span>吃点什么</span>
+            <i class="icon-radio_button_unchecked" id="fixed-sidebar-toggle-button"></i>
+            <i class="icon-close" id="sidebar-toggle-button-close"></i>
+        </a>
+        <div class="page-sidebar-inner">
+            <div class="page-sidebar-menu">
+                <ul class="accordion-menu">
+                    <li class="active-page">
+                        <a href="index.html">
+                            <i class="menu-icon icon-home4"></i><span>仪表板</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/manage/school.html">
+                            <i class="menu-icon icon-format_list_bulleted"></i><span>学校管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/manage/shop.html">
+                            <i class="menu-icon icon-format_list_bulleted"></i><span>店铺管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/manage/item.html">
+                            <i class="menu-icon icon-format_list_bulleted"></i><span>商品管理</span>
+                        </a>
+                    </li>
+                    <li class="menu-divider"></li>
+                    <li>
+                        <a href="/index.html">
+                            <i class="menu-icon icon-public"></i><span>主站</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/colour93/eatwhat">
+                            <i class="menu-icon icon-public"></i><span>GitHub</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主内容区 -->
+    <div class="page-content">
+
+        <!-- 页头 -->
+        <div class="page-header">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                
+                    <!-- 头像区域 -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><a href="javascript:void(0)" id="collapsed-sidebar-toggle-button"><i class="fa fa-bars"></i></a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown user-dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="http://via.placeholder.com/36x36" alt="" class="img-circle"></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="javascript:void(0);" id="logout-a">登出</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <!-- 页内容 -->
+        <div class="page-inner">
+            <!-- 页标题 -->
+            <div class="page-title">
+                <h3 class="breadcrumb-header" id="dash-title">仪表板</h3>
+            </div>
+            <!-- 页 -->
+            <div id="main-wrapper">
+                <!-- 错误信息模态框 -->
+                <div class="modal fade" id="alertModal" tabindex="-2" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="alertModalLabel">一些问题</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p id="alertMsg"></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- js -->
+
+    <!-- 前置 -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script src="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/jquery/jquery-3.1.0.min.js"></script>
+    <script src="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/uniform/js/jquery.uniform.standalone.js"></script>
+    <script src="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/switchery/switchery.min.js"></script>
+    <script src="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/datatables/js/jquery.datatables.min.js"></script>
+    <script src="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <!-- 主题 -->
+    <script src="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/assets/js/ecaps.min.js"></script>
+    <!-- 页面自定义 -->
+    <script src="/js/common.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/table.js"></script>
+</body>
+</html>
