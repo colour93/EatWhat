@@ -2,6 +2,11 @@
 // 初始化apiURL
 const baseURL = "http://127.0.0.1:3000";
 const loginPageURL = "/manage/login.html";
+const statusURL = baseURL + "/manage/status";
+const bingURL = baseURL + "/bing";
+const loginURL = baseURL + "/manage/admin/login";
+const logoutURL = baseURL + "/manage/admin/logout";
+const tokenVerifyURL = baseURL + "/manage/token/verify";
 const getSchoolListURL = baseURL + "/manage/school/list";
 const getShopListURL = baseURL + "/manage/shop/list";
 const getItemListURL = baseURL + "/manage/item/list";
@@ -11,10 +16,6 @@ const addItemListURL = baseURL + "/manage/item/add";
 const deleteSchoolURL = baseURL + "/manage/school/delete";
 const deleteShopURL = baseURL + "/manage/shop/delete";
 const deleteItemURL = baseURL + "/manage/item/delete";
-const bingURL = baseURL + "/bing";
-const loginURL = baseURL + "/manage/admin/login";
-const logoutURL = baseURL + "/manage/admin/logout";
-const tokenVerifyURL = baseURL + "/manage/token/verify";
 
 
 // 处理URL查询参数

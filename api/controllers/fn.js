@@ -86,7 +86,7 @@ module.exports  = {
         });
         return;
     },
-
+    // 密码比对
     comparePwd: (pwd, saltType, dPwd) => {
         let salt, nPwd;
         switch (saltType) {
@@ -105,5 +105,21 @@ module.exports  = {
         } else {
             return 0;
         }
+    },
+    // 生成日期数串
+    getDateNumber: () => {
+        let dateObj = new Date();
+        yearStr = dateObj.getFullYear().toString();
+        if (dateObj.getMonth() < 9) {
+            monthStr = "0" + (dateObj.getMonth() + 1).toString();
+        } else {
+            monthStr = (dateObj.getMonth() + 1).toString();
+        };
+        if (dateObj.getDate() < 10) {
+            dateStr = "0" + dateObj.getDate().toString();
+        } else {
+            dateStr = dateObj.getDate().toString();
+        }
+        return parseInt(yearStr + monthStr + dateStr);
     }
 }

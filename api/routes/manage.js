@@ -12,6 +12,7 @@ const $ = require('../controllers/fn');
 const SchoolList = require('../mongo/SchoolList');
 const ShopList = require('../mongo/ShopList');
 const Admin = require('../mongo/Admin');
+const Stat = require('../mongo/Stat');
 
 // 参数
 const {frontURL} = require('../config.json').config;
@@ -58,6 +59,47 @@ const auth = async (req, res, next) => {
 
     next();
 }
+
+// 仪表板状态获取
+router.get('/status', auth, async (req, res, next) => {
+
+    // 初始化变量
+    let schoolCount, shopCount, apiTodayCount, apiTotalCount, date;
+
+    // 生成日期数字串
+    date = $.getDateNumber();
+
+    // 获取学校总数
+    schoolCount = await SchoolList.count();
+
+    // 获取店铺总数
+    shopCount = await ShopList.count();
+
+    // 获取当日API调用量
+    apiTodayCount = await Stat.findOne({date})
+        .then((result)=>{
+            if (!result) {
+                return 0;
+            }
+            return result.count;
+        });
+
+    // 获取全部API调用量
+    apiTotalCount = await Stat.findOne({type: 'total'})
+        .then((result)=>{
+            if (!result) {
+                return 0;
+            }
+            return result.count;
+        });
+
+    $.ok(res, {
+        schoolCount,
+        shopCount,
+        apiTodayCount,
+        apiTotalCount
+    })
+})
 
 // =========学校管理=========
 

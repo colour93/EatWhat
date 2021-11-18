@@ -4,7 +4,7 @@ const {adminSalt} = require('../config.json').db;
 const mongoose = require("mongoose");
 const {Schema} = mongoose;
 
-// SchoolList
+// AdminList
 const AdminSchema = new Schema ({
     user: {
         type: String,
