@@ -1,6 +1,6 @@
 
 // 初始化apiURL
-const baseURL = "http://127.0.0.1:3000";
+const baseURL = "https://api.chidianshen.me:26364";
 const loginPageURL = "/manage/login.html";
 const statusURL = baseURL + "/manage/status";
 const bingURL = baseURL + "/bing";

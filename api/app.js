@@ -25,7 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.all('*', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
+  res.header("Access-Control-Allow-Origin", "https://next.chidianshen.me");
   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header('Access-Control-Allow-Headers', 'Content-Type');
@@ -41,7 +41,7 @@ app.use(function(req, res, next) {
   res.send({
     code: 404,
     msg: 'not found',
-    '使用说明': 'https://fur93.icu',
+    '使用说明': 'https://github.com/colour93/EatWhat',
     egg: "猜猜我是谁",
     'made-by-93': 'run-with-love'
   })
