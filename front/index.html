@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/css/mdui-custom.css">
     <link rel="stylesheet" href="/css/index.css">
 </head>
-<body class="mdui-bottom-nav-fixed mdui-theme-primary-deep-purple "> <!-- .mdui-theme-layout-auto -->
+<body class="mdui-bottom-nav-fixed mdui-theme-primary-deep-purple"> <!-- .mdui-theme-layout-auto -->
 
     <!-- bg-img -->
     <img src="/bg.png" alt="" id="bg-img">
@@ -19,9 +19,6 @@
     <!-- app-bar -->
     <div class="mdui-appbar">
         <div class="mdui-toolbar mdui-color-grey-50">
-            <div class="mdui-toolbar-spacer"></div>
-            <a href="javascript:;" class="mdui-typo-headline">吃点什么</a>
-            <div class="mdui-toolbar-spacer"></div>
         </div>
     </div>
 
@@ -39,12 +36,12 @@
 
     <!-- greet -->
     <div class="info-title">
-        <p class="info-line-1" id="time-greet">早上好</p>
-        <p class="info-line-2">今天想吃点什么？</p>
+        <p class="info-line-1" id="line-1"></p>
+        <p class="info-line-2" id="line-2"></p>
     </div>
 
-    <!-- 主内容区 -->
-    <div class="content">
+    <!-- 操作主内容区 -->
+    <div class="main-content">
 
         <!-- glass-box -->
         <div class="glass-box glass-box-index-btn glass-box-title mdui-ripple" id="random-oneclick">
@@ -61,6 +58,9 @@
         </div>
 
     </div>
+
+    <!-- 结果内容区 -->
+    <div class="result-content"></div>
 
 
 

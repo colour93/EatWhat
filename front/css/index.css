@@ -35,7 +35,9 @@
 
 /* 玻璃拟态 */
 
-.content {
+.main-content {
+
+    /* display: none !important; */
     
     /* 边距 */
     margin-top: 14vh;
@@ -75,3 +77,36 @@
     font-weight: 900;
 }
 
+
+/* 结果内容区 */
+.result-content .glass-box.glass-box-result {
+    margin: 5vh 20px 5vh 20px;
+    padding: 20px 0px 20px 0px;
+}
+
+.glass-box.glass-box-result {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+p.glass-box-result {
+    margin: 5px 20px 5px 20px;
+}
+
+p.result-itemName {
+    font-size: 24px;
+    font-weight: 550;
+}
+
+p.result-shopName {
+    font-size: 20px;
+}
+
+p.result-price {
+    font-size: 20px;
+}
+
+p.result-price::before {
+    content: "￥";
+}

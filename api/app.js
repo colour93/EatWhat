@@ -24,14 +24,48 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.all('*', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  res.header('Access-Control-Allow-Credentials', true);
-  next();
-});
+
+app.all('*', (req, res, next) => {
+
+  if (!req.headers.origin) {
+    return;
+  }
+  
+  const accessOrigin = [
+    'http://127.0.0.1:5500',
+    'http://10.203.64.64:5500',
+    'http://next.chidianshen.me',
+    'https://next.chidianshen.me'
+  ];
+
+  if (accessOrigin.includes(req.headers.origin.toLowerCase())) {
+    
+    res.header("Access-Control-Allow-Origin", req.headers.origin);
+    res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Credentials', true);
+
+    if (req.method.toLowerCase()=='options'){
+      res.sendStatus(200);
+    } else {
+      next();
+    }
+
+  } else {
+    res.sendStatus(500);
+  }
+
+})
+
+// app.all('*', function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
+//   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+//   res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//   res.header('Access-Control-Allow-Headers', 'Content-Type');
+//   res.header('Access-Control-Allow-Credentials', true);
+//   next();
+// });
 
 app.use('/', indexRouter);
 app.use('/manage', manageRouter);
