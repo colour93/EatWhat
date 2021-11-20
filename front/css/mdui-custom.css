@@ -1,0 +1,32 @@
+
+/* 魔改mdui */
+
+/* 颜色变量 */
+html {
+    --whiteShadow: 4px 0 24px -1px rgba(153, 153, 153, 0.2);
+    --blackShadow: 0 0 24px -1px rgba(65, 65, 65, 0.2);
+}
+
+/* 圆角修改 */
+.mdui-dialog {
+    border-radius: 15px;
+}
+.mdui-btn {
+    border-radius: 10px;
+}
+
+/* 应用栏字体修改 */
+.mdui-appbar .mdui-typo-headline {
+    font-size: 20px;
+}
+
+/* 阴影修改 */
+.mdui-appbar, .mdui-bottom-nav {
+    box-shadow: 0 0 0 0;
+    border: 0.5px solid rgba(0, 0, 0, 0.1);
+}
+
+/* navbar置顶 */
+.mdui-bottom-nav {
+    z-index: 50;
+}

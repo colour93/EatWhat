@@ -13,18 +13,10 @@
 }
 
 
-/* 阴影修改 */
-
-.mdui-appbar, .mdui-bottom-nav {
-    box-shadow: 0 0 0 0;
-    border: 0.5px solid rgba(0, 0, 0, 0.1);
-}
-
-
 /* 标题 */
 
 .info-title {
-    margin: 40px 20px 20px 20px;
+    margin: 8vh 20px 20px 20px;
 }
 
 .info-title p {
@@ -43,6 +35,78 @@
 
 /* 玻璃拟态 */
 
-.glass-box {
+.main-content {
+
+    /* display: none !important; */
     
+    /* 边距 */
+    margin-top: 14vh;
+
+    /* 弹性布局 */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.glass-box {
+
+    /* 弹性布局 (用于垂直居中) */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    /* 玻璃拟态 */
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: var(--whiteShadow);
+    background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
+}
+
+.glass-box.glass-box-index-btn {
+    /* 宽高 */
+    height: 16vh;
+    width: 40vw;
+    margin: 10px 10px 10px 10px;
+}
+
+.glass-box-title {
+    font-size: 24px;
+    font-weight: 900;
+}
+
+
+/* 结果内容区 */
+.result-content .glass-box.glass-box-result {
+    margin: 5vh 20px 5vh 20px;
+    padding: 20px 0px 20px 0px;
+}
+
+.glass-box.glass-box-result {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+p.glass-box-result {
+    margin: 5px 20px 5px 20px;
+}
+
+p.result-itemName {
+    font-size: 24px;
+    font-weight: 550;
+}
+
+p.result-shopName {
+    font-size: 20px;
+}
+
+p.result-price {
+    font-size: 20px;
+}
+
+p.result-price::before {
+    content: "￥";
 }

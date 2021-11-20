@@ -8,23 +8,21 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/css/mdui.min.css">
+    <link rel="stylesheet" href="/css/mdui-custom.css">
     <link rel="stylesheet" href="/css/index.css">
 </head>
-<body class="mdui-bottom-nav-fixed mdui-theme-primary-deep-purple "> <!-- .mdui-theme-layout-auto -->
+<body class="mdui-bottom-nav-fixed mdui-theme-primary-deep-purple"> <!-- .mdui-theme-layout-auto -->
 
     <!-- bg-img -->
     <img src="/bg.png" alt="" id="bg-img">
 
-    <!-- appBar -->
+    <!-- app-bar -->
     <div class="mdui-appbar">
         <div class="mdui-toolbar mdui-color-grey-50">
-            <div class="mdui-toolbar-spacer"></div>
-            <a href="javascript:;" class="mdui-typo-headline">吃点什么</a>
-            <div class="mdui-toolbar-spacer"></div>
         </div>
     </div>
 
-    <!-- tabBar -->
+    <!-- nav-bar -->
     <div class="mdui-bottom-nav mdui-color-grey-50">
         <a href="javascript:;" class="mdui-ripple mdui-bottom-nav-active">
             <i class="mdui-icon material-icons">home</i>
@@ -38,18 +36,38 @@
 
     <!-- greet -->
     <div class="info-title">
-        <p class="info-line-1">早上好</p>
-        <p class="info-line-2">今天想吃点什么？</p>
+        <p class="info-line-1" id="line-1"></p>
+        <p class="info-line-2" id="line-2"></p>
     </div>
 
-    <!-- glass-box -->
-    <div class="glass-box">
-        <p>一键抽卡</p>
+    <!-- 操作主内容区 -->
+    <div class="main-content">
+
+        <!-- glass-box -->
+        <div class="glass-box glass-box-index-btn glass-box-title mdui-ripple" id="random-oneclick">
+            <p>一键抽卡</p>
+        </div>
+        <div class="glass-box glass-box-index-btn glass-box-title mdui-ripple" id="random-10pulls">
+            <p>十连抽</p>
+        </div>
+        <div class="glass-box glass-box-index-btn glass-box-title mdui-ripple" id="random-bytag">
+            <p>按标签抽</p>
+        </div>
+        <div class="glass-box glass-box-index-btn glass-box-title mdui-ripple" id="random-byshop">
+            <p>按店铺抽</p>
+        </div>
+
     </div>
+
+    <!-- 结果内容区 -->
+    <div class="result-content"></div>
+
 
 
     <!-- js -->
     <script src="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/js/axios.min.js"></script>
     <script src="https://fur233.oss-cn-hangzhou.aliyuncs.com/common/js/mdui.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/index.js"></script>
 </body>
 </html>
