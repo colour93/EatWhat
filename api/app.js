@@ -25,6 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+
 app.all('*', (req, res, next) => {
 
   if (!req.headers.origin) {
@@ -75,7 +76,7 @@ app.use(function(req, res, next) {
   res.send({
     code: 404,
     msg: 'not found',
-    '使用说明': 'https://fur93.icu',
+    '使用说明': 'https://github.com/colour93/EatWhat',
     egg: "猜猜我是谁",
     'made-by-93': 'run-with-love'
   })
