@@ -1,7 +1,7 @@
 // 前台前端通用js
 
 // API地址初始化
-const baseURL = `https://${window.location.hostname}:26364`;
+const baseURL = `https://api.chidianshen.me:26364`;
 const getURL = baseURL + '/get';
 
 // 添加navbar监听器
