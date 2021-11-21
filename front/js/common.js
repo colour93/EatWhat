@@ -1,7 +1,7 @@
 // 前台前端通用js
 
 // API地址初始化
-const baseURL = `http://${window.location.hostname}:9519`;
+const baseURL = `https://api.chidianshen.me:26364`;
 const getURL = baseURL + '/get';
 
 // 初始化axios拦截器
