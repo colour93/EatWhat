@@ -4,6 +4,24 @@
 const baseURL = `https://api.chidianshen.me:26364`;
 const getURL = baseURL + '/get';
 
+// 初始化axios拦截器
+axios.interceptors.response.use(
+    (res) => {
+        return res;
+    } , 
+    (err) => {
+        if (err.response.status == 401) {
+            // URLenocde当前pathname,方便重定向
+            pn = encodeURI(window.location.pathname);
+            window.location.href = loginPageURL + `?redirect=${pn}`;
+        } else {
+            mdui.alert(err.response.data.msg);
+        }
+    });
+
+// 初始化axios跨域凭证设置
+axios.defaults.withCredentials = true;
+
 // 添加navbar监听器
 document.getElementsByClassName('mdui-bottom-nav')[0].addEventListener('change.mdui.bottomNav', (e)=>{
     const {index} = e._detail;

@@ -51,11 +51,13 @@ function bindAction () {
             showResult(result);
         });
     })
-    // 按店铺抽
-    document.getElementById('random-byshop').addEventListener('click', async (e)=>{
-        result = await getRandom('food');
-        if (!result) return;
-        showResult(result);
+    // 按品名抽
+    document.getElementById('random-byitem').addEventListener('click', async (e)=>{
+        mdui.prompt('请输入品名: (如:三杯鸡)', '按品名抽卡', async (keyword) => {
+            result = await getRandom('food', {type: 3, keyword});
+            if (!result) return;
+            showResult(result);
+        });
     })
 
 }

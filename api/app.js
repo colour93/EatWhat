@@ -29,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.all('*', (req, res, next) => {
 
   if (!req.headers.origin) {
+    next();
     return;
   }
   
@@ -38,6 +39,7 @@ app.all('*', (req, res, next) => {
     'http://next.chidianshen.me',
     'https://next.chidianshen.me'
   ];
+
 
   if (accessOrigin.includes(req.headers.origin.toLowerCase())) {
     
