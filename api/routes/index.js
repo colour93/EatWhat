@@ -140,6 +140,7 @@ router.get('/get/:type', apiStat, async (req, res, next) => {
     // 初始化变量
     let result = [];
     let otherItemType;
+    let aggregateConfig = [];
 
     // 获取路径参数
     let itemType = req.params.type;
@@ -152,19 +153,23 @@ router.get('/get/:type', apiStat, async (req, res, next) => {
         $.missingParam(res);
         return;
     }
+    // 格式化count
     count = parseInt(count);
     if (isNaN(count)) {
         count = 1;
     };
+    // count大于15
     if (count > 15) {
         $.missingParam(res);
         return;
     }
+    // 判断类型
     if (!type) {
         type = 0;
         keyword = null;
     } else {
         type = parseInt(type);
+        // 判断类型和关键词是否共存
         if (isNaN(type) || !keyword) {
             $.missingParam(res);
             return;
@@ -187,34 +192,28 @@ router.get('/get/:type', apiStat, async (req, res, next) => {
 
         // 标准模式
         case 0:
-            
-            // 抽卡！
-            while (result.length==0) {
 
-                // 聚合查询
-                result = await ShopList.aggregate([
-                    
-                    // 先随机查找 count 个商家
-                    {"$sample" : { size : count }},
+            aggregateConfig = [
 
-                    // 依据类目拆分
-                    {"$unwind" : `$${itemType}`},
+                // 先随机查找 count 个商家
+                {"$sample" : { size : count }},
 
-                    // 从拆分好的文档中随机抽取 count 个商品
-                    {"$sample" : { size : count }},
+                // 依据类目拆分
+                {"$unwind" : `$${itemType}`},
 
-                    // 设置返回项
-                    {"$project" : pjCFG}
+                // 从拆分好的文档中随机抽取 count 个商品
+                {"$sample" : { size : count }},
 
-                ]);
-            };
+                // 设置返回项
+                {"$project" : pjCFG}
+                
+            ];
             break;
 
         // 按照tag查找
         case 1:
 
-            // 聚合查询 yyds    
-            result = await ShopList.aggregate([
+            aggregateConfig = [
 
                 // 按照tag筛选商家
                 {"$match" : { tag: keyword }},
@@ -227,7 +226,8 @@ router.get('/get/:type', apiStat, async (req, res, next) => {
 
                 // 设置返回项
                 {"$project" : pjCFG}
-            ])
+
+            ]
             break;
 
         // 按照店铺id查找
@@ -235,8 +235,7 @@ router.get('/get/:type', apiStat, async (req, res, next) => {
 
             shopId = parseInt(keyword);
             
-            // 聚合查询 yyds x2
-            result = await ShopList.aggregate([
+            aggregateConfig = [
 
                 // 按照tag筛选商家
                 {"$match" : { shopId }},
@@ -249,12 +248,58 @@ router.get('/get/:type', apiStat, async (req, res, next) => {
 
                 // 设置返回项
                 {"$project" : pjCFG}
-            ])
+
+            ]
+            break;
+
+        // 按照商品关键词查找
+        case 3:
+
+            itemName = keyword;
+
+            // 查询字符串转下json,因为一些问题
+            searchJSON = JSON.parse(`{"${itemType}.itemName": {"$regex": "${itemName}"}}`);
+
+            aggregateConfig = [
+
+                // 首先确定有这个关键词的商家
+                {"$match": searchJSON},
+
+                // 根据品类拆分文档
+                {"$unwind": "$food"},
+
+                // 从拆分好的文档中随机抽取 count 个商品
+                {"$sample" : { size : count }},
+
+                // 查询字符串
+                {"$match": searchJSON},
+
+                // 设置返回项
+                {"$project": pjCFG}
+
+            ]
+
             break;
     
         default:
             $.missingParam(res);
             return;
+    }
+
+    
+    // 聚合查询
+    let i = 0;
+    while (!result.length) {
+        if (i > 5) {
+            break;
+        };
+        result = await ShopList.aggregate(aggregateConfig);
+        i++ ;
+    };
+
+    if (!result.length) {
+        $.notFound(res, '根据您的查询条件没有查询到相关条目\n又或者...服务器偷了点懒...\n可以重新抽试试');
+        return;
     }
 
     $.ok(res, result);
